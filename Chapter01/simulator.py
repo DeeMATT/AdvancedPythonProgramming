@@ -3,7 +3,7 @@ use('TKAgg')
 
 from matplotlib import pyplot as plt
 from matplotlib import animation
-
+from random import uniform
 
 
 class Particle:
@@ -111,6 +111,15 @@ def test_evolve():
     assert fequal(p2.x, 0.191358)
     assert fequal(p2.y, -0.365227) 
 
+
+def benchmark():
+    particles = [Particle(uniform(-1.0, 1.0),
+                        uniform(-1.0, 1.0),
+                        uniform(-1.0, 1.0))
+                for i in range(1000)]
+
+    simulator = ParticleSimulator(particles)
+    simulator.evolve(0.1)
 
 if __name__ == "__main__":
     test_visualize()
