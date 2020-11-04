@@ -121,6 +121,17 @@ def benchmark():
     simulator = ParticleSimulator(particles)
     simulator.evolve(0.1)
 
+def timing():
+    result = timeit.timeit('benchmark()',
+        setup='from __main__ import benchmark',
+        number=10)
+
+    # result is the time (in seconds) to run the whole loop
+    result = timeit.repeat('benchmark()',
+        setup='from __main__ import benchmark',
+        number=10,
+        repeat=3)
+
 if __name__ == "__main__":
     test_visualize()
 
